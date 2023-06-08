@@ -24,10 +24,10 @@ public class Shooters : MonoBehaviour
         {
             shootLine.SetPosition(0, shootOrigin.position);
             shootLine.SetPosition(1, hit.point);
-            if (hit.transform.GetComponent<Shooters>())
+            if (hit.transform.GetComponent<Agent>())
             {
 
-                Shooters other =hit.transform.GetComponent<Shooters>();
+                Enemy other =hit.transform.GetComponent<Enemy>();
                 Damage(other);
                 
             }
@@ -41,9 +41,8 @@ public class Shooters : MonoBehaviour
     }
     public void Damage(Enemy agent)
     {
-        if (agent.GetHealt() - damage >= 0) agent.healt -= damage;
-        else agent.healt = 0;
-        Debug.Log("le di a " + agent.name + ": " + agent.healt + "/100");
+        agent.recivDamage(damage);
+        Debug.Log("le di a " + agent.name + ": " + agent.GetHealt() + "/100");
     }
 
     public IEnumerator VisibilityShoot()

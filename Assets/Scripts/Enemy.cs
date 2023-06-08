@@ -43,4 +43,9 @@ public class Enemy : Agent
     {
         return currentHealt;
     }
+    public void recivDamage(int damage)
+    {
+        if (currentHealt - damage >= 0) currentHealt -= damage;
+        else currentHealt = 0;
+    }
 }
