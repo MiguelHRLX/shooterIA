@@ -8,7 +8,7 @@ public class Player : Shooters
     RaycastHit screenHit;
     private Vector3 moveDirection;
     [SerializeReference] Rigidbody playerRigidBody;
-    public GameObject marc;
+    [SerializeField]private GameObject marc;
     private void Awake()
     {
         shootTimer += shootRate;
@@ -36,7 +36,7 @@ public class Player : Shooters
         Debug.DrawRay(cameraRay.origin, (cameraRay.direction * 100), Color.cyan);
         if (Physics.Raycast(cameraRay,out screenHit,200f))
         {
-            marc.transform.position = screenHit.point;
+            if(marc)marc.transform.position = screenHit.point;
             Vector3 DistancePlayerObjetive = screenHit.point-transform.position;
             Vector3 shootDirection = new Vector3(DistancePlayerObjetive.x, 0, DistancePlayerObjetive.z);
             transform.right = shootDirection;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.MLAgents;
 public class Shooters : MonoBehaviour
 {
     public int healt=100;
@@ -38,9 +39,9 @@ public class Shooters : MonoBehaviour
         }
         StartCoroutine(VisibilityShoot());
     }
-    public void Damage(Shooters agent)
+    public void Damage(Enemy agent)
     {
-        if (agent.healt - damage >= 0) agent.healt -= damage;
+        if (agent.GetHealt() - damage >= 0) agent.healt -= damage;
         else agent.healt = 0;
         Debug.Log("le di a " + agent.name + ": " + agent.healt + "/100");
     }
